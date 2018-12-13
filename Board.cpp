@@ -186,11 +186,13 @@ void Board::getAIMove(const int& trials){
 	double bestSeen = -1e200;
 
 	for(int i = 0; i < boardX; i++){
+		std::cout << vb[i].boardValue << ' ';
 		if(vb[i].boardValue > bestSeen){
 			bestSeen = vb[i].boardValue;
 			bestMoveX = i;
 		}
 	}
+	std::cout << '\n';
 
 	for(int i = 0; i < boardY; i++){
 		if(b[i][bestMoveX] == 0){

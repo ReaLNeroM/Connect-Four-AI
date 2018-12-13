@@ -13,11 +13,16 @@ const int windowSize = 2000;
 const double radius = 100;
 const int boardX = 7;
 const int boardY = 6;
-const int AITrials = 50000;
+const int AITrials = 20000;
 const int longest = boardX + boardY;
 
 int main(){
-	sf::RenderWindow window(sf::VideoMode(windowSize, windowSize), "It Works!");
+	std::srand(std::time(0));
+
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 4;
+
+	sf::RenderWindow window(sf::VideoMode(windowSize, windowSize), "It Works!", sf::Style::Default, settings);
 	window.setFramerateLimit(60);
 
 	Board b(boardY, boardX);

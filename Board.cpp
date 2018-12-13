@@ -185,6 +185,7 @@ void Board::getAIMove(const int& trials){
 
 	double bestSeen = -1e200;
 
+	std::cout << "Value of moves: ";
 	for(int i = 0; i < boardX; i++){
 		std::cout << vb[i].boardValue << ' ';
 		if(vb[i].boardValue > bestSeen){
@@ -216,11 +217,9 @@ void Board::updateBoardValue(const int& trials){
 
 		int winner = cp.checkWin();
 
-		if(winner == -1){
-			wins += 0.001;
-		} else if(winner == added % 2 + 1){
+		if(winner == added % 2 + 1){
 			wins -= 1.0;
-		} else {
+		} else if(winner == !(added % 2) + 1){
 			wins += 1.0;
 		}
 	}

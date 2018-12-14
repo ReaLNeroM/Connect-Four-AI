@@ -169,13 +169,15 @@ void Board::getAIMove(const int& trials){
 	std::vector<std::thread> vt;
 	Board vb[boardX];
 
+	double bestMoveValue = -1.0;
+
 	for(int i = 0; i < boardX; i++){
 		vb[i] = Board(*this);
 
 		if(vb[i].addPiece(i)){
 			vt.push_back(std::thread(&Board::updateBoardValue, std::ref(vb[i]), trials));
 		} else {
-			vb[i].boardValue = -1e200;
+			vb[i].boardValue = 1.0;
 		}
 	}
 
@@ -183,13 +185,12 @@ void Board::getAIMove(const int& trials){
 		th.join();
 	}
 
-	double bestSeen = -1e200;
 
 	std::cout << "Value of moves: ";
 	for(int i = 0; i < boardX; i++){
-		std::cout << vb[i].boardValue << ' ';
-		if(vb[i].boardValue > bestSeen){
-			bestSeen = vb[i].boardValue;
+		std::cout << 1.0 - vb[i].boardValue << ' ';
+		if(1.0 - vb[i].boardValue > bestMoveValue){
+			bestMoveValue = 1.0 - vb[i].boardValue;
 			bestMoveX = i;
 		}
 	}
@@ -206,6 +207,7 @@ void Board::getAIMove(const int& trials){
 void Board::updateBoardValue(const int& trials){
 	double wins = 0.0;
 
+
 	for(int trial = 0; trial < trials; trial++){
 		Board cp(*this);
 
@@ -218,9 +220,7 @@ void Board::updateBoardValue(const int& trials){
 		int winner = cp.checkWin();
 
 		if(winner == added % 2 + 1){
-			wins -= 1.0;
-		} else if(winner == !(added % 2) + 1){
-			wins += 1.0;
+			wins += 1;
 		}
 	}
 

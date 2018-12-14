@@ -4,12 +4,12 @@
 
 class Board {
 	std::vector<std::vector<int>> b;
-	int added;
 	int boardY, boardX;
 	int bestMoveY, bestMoveX;
 	double boardValue;
 
 public:
+	int added;
 	Board();
 	Board(int, int);
 	Board(Board&);

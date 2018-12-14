@@ -13,7 +13,7 @@ const int windowSize = 2000;
 const double radius = 100;
 const int boardX = 7;
 const int boardY = 6;
-const int AITrials = 20000;
+const int AITrials = 50000;
 const int longest = boardX + boardY;
 
 int main(){

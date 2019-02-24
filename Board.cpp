@@ -162,10 +162,6 @@ void Board::render(sf::RenderWindow &window, const int& windowSize, const double
 }
 
 void Board::AImove(const int& trials){
-	if(bestMoveY != -1 or bestMoveX != -1){
-		return;
-	}
-
 	std::vector<std::thread> vt;
 	Board vb[boardX];
 

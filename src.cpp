@@ -19,15 +19,19 @@ const int longest = boardX + boardY;
 int main(){
 	std::srand(std::time(0));
 
-	std::cout << "Do you want to play first or second?" << std::endl;
+	std::cout << "Do you want to play first or second? Just type first/second" << std::endl;
 	std::string s;
 	std::cin >> s;
 
 	int playerTurn = -1;
-	if(!s.empty() and s[0] == "f"){
+	if(!s.empty() and (s[0] == 'f' or s[0] == 'F')){
 		playerTurn = 0;
-	} else if(s[0] == "s"){
+		std::cout << "You play first..." << std::endl;
+	} else if(!s.empty() and (s[0] == 's' or s[0] == 'S')){
 		playerTurn = 1;
+		std::cout << "AI plays first..." << std::endl;
+	} else {
+		std::cout << "Couldn't read string, so AI is playing by itself..." << std::endl;
 	}
 
 	sf::ContextSettings settings;
@@ -81,7 +85,8 @@ int main(){
 		}
 
 		b.render(window, windowSize, radius);
-		
+		window.display();
+
 		if(b.checkWin() != 0){
 			std::cout << "Win for player #" << b.checkWin() << "!\n";
 			while(true){
@@ -92,10 +97,8 @@ int main(){
 
 		if(playerTurn == -1 or b.added % 2 == playerTurn){
 			b.AImove(AITrials);
+			sound.play();
 		}
-
-		window.display();
-
 	}
 
 	return 0;

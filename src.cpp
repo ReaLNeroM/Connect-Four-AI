@@ -19,6 +19,17 @@ const int longest = boardX + boardY;
 int main(){
 	std::srand(std::time(0));
 
+	std::cout << "Do you want to play first or second?" << std::endl;
+	std::string s;
+	std::cin >> s;
+
+	int playerTurn = -1;
+	if(!s.empty() and s[0] == "f"){
+		playerTurn = 0;
+	} else if(s[0] == "s"){
+		playerTurn = 1;
+	}
+
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 4;
 
@@ -71,11 +82,16 @@ int main(){
 
 		if(b.checkWin() != 0){
 			std::cout << "Win for player #" << b.checkWin() << "!\n";
+			while(true){
+				
+			}
 			return 0;
 		}
 
 		b.render(window, windowSize, radius);
-		b.getAIMove(AITrials);
+		if(playerTurn == -1 or b.added % 2 == playerTurn){
+			b.AImove(AITrials);
+		}
 
 		window.display();
 

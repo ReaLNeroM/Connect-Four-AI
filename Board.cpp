@@ -161,7 +161,7 @@ void Board::render(sf::RenderWindow &window, const int& windowSize, const double
 	}
 }
 
-void Board::getAIMove(const int& trials){
+void Board::AImove(const int& trials){
 	if(bestMoveY != -1 or bestMoveX != -1){
 		return;
 	}
@@ -196,6 +196,7 @@ void Board::getAIMove(const int& trials){
 	}
 	std::cout << '\n';
 
+	addPiece(bestMoveX);
 	for(int i = 0; i < boardY; i++){
 		if(b[i][bestMoveX] == 0){
 			bestMoveY = i;

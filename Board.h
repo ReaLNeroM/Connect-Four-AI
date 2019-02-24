@@ -17,6 +17,6 @@ public:
 	int checkWin();
 	bool addPiece(int);
 	void render(sf::RenderWindow&, const int&, const double&);
-	void getAIMove(const int&);
+	void AImove(const int&);
 	void updateBoardValue(const int&);
 };

@@ -80,6 +80,8 @@ int main(){
 			}
 		}
 
+		b.render(window, windowSize, radius);
+		
 		if(b.checkWin() != 0){
 			std::cout << "Win for player #" << b.checkWin() << "!\n";
 			while(true){
@@ -88,7 +90,6 @@ int main(){
 			return 0;
 		}
 
-		b.render(window, windowSize, radius);
 		if(playerTurn == -1 or b.added % 2 == playerTurn){
 			b.AImove(AITrials);
 		}

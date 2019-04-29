@@ -7,7 +7,6 @@ class Board {
 	int boardY, boardX;
 	int bestMoveY, bestMoveX;
 	double boardValue;
-
 public:
 	int added;
 	Board();

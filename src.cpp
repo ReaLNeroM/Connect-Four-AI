@@ -53,6 +53,7 @@ int main(){
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed){
 				window.close();
+				return 0;
 			} else if(event.type == sf::Event::MouseButtonPressed){
 				if(event.mouseButton.button == sf::Mouse::Left){
 					int getX = -1;
@@ -89,13 +90,20 @@ int main(){
 
 		if(b.checkWin() != 0){
 			std::cout << "Win for player #" << b.checkWin() << "!\n";
+
+			// no longer receive input, just wait for window close
 			while(true){
-				
+				window.pollEvent(event);
+				if (event.type == sf::Event::Closed){
+					window.close();
+					return 0;
+				}
 			}
+
 			return 0;
 		}
 
-		if(playerTurn == -1 or b.added % 2 == playerTurn){
+		if(playerTurn == -1 or b.added % 2 != playerTurn){
 			b.AImove(AITrials);
 			sound.play();
 		}

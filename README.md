@@ -7,8 +7,5 @@ The popular board game Connect Four implemented in C++ using SFML graphics. By d
 - pthread
 
 # How to run?
-make all
-run ConnectFour
-
-# Command-line Arguments?
-Currently unimplemented
+- make all
+- run ConnectFour

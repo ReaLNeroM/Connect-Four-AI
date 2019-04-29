@@ -6,6 +6,7 @@ Board::Board(){
 	bestMoveY = -1, bestMoveX = -1;
 	added = 0;
 }
+
 Board::Board(int y, int x){
 	boardY = y, boardX = x;
 	bestMoveY = -1, bestMoveX = -1;
